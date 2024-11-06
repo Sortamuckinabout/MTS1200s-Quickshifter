@@ -5,3 +5,7 @@ thanks to  Mr CANBUS initial CAN decoding
 thanks to  Mo Thunderz websocket lessons and examples
 thanks to Renato Bonomini ducati panigale canbus
 
+using json 6, not updated to latest
+Arduino IDE
+
+circuit diagram and detail coming.
