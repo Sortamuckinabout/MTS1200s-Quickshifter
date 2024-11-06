@@ -7,8 +7,8 @@
 #include <ArduinoJson.h>                              // needed for JSON encapsulation (send multiple variables with one string)
 #include <SPIFFS.h>
 // SSID and password of Wifi connection:
-const char* ssid = "Catscale1";
-const char* password = "slowlearner";
+const char* ssid = "whateveryoucallit";
+const char* password = "yourpassword";
 
 //configure IP adresses of the local access point
 IPAddress local_IP(192,168,1,22);
