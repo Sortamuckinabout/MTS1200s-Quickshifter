@@ -1,0 +1,73 @@
+
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd"><!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width" />
+<title>Page Title</title>
+</head>
+<style>
+p {
+  border: 1px solid grey;
+  padding: 5px;
+  font-size:110%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<body style='background-color: Black;'>
+<span style='color: White;'>
+
+<h1 style="border: 1px solid Blue;
+  padding:5px;
+  font-family: Arial, Helvetica, sans-serif;
+   color:Orange;font-size:110%; 
+"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Eddie's QuickShifter </h1>
+
+<p style="color:white; font-size:90%;">millis &nbsp;&nbsp; (<span id='Time'></span>)</p>
+<p style="color:yellow; font-size:110%;">CANBUS &nbsp;&nbsp; <span id='CAN_alert'></span></p>
+<p>KillTime &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span id='Killtime'></span> </p>
+<p>RPM &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;    <span id='RPM'></span>  </p>
+<p>Gear &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;   <span id='Gear'></span> </p>
+<p>Throttle &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; <span id='TPS'></span> </p>
+<p>Sensor  mV &nbsp;&nbsp;&nbsp;[ <span id='sensorV'></span>] </p>
+<p>UP Trigger mV &nbsp;&nbsp; [<span id='TriggerV'></span> ]</p>
+<p>Down Trigger mV &nbsp; [<span id='DownV'></span> ]</p>
+
+
+</body>
+<script>
+ 
+     var Socket;  
+  
+  function init() {
+    Socket = new WebSocket('ws://' + window.location.hostname + ':81/');
+    Socket.onmessage = function(event) {
+      processCommand(event);
+    };
+  }    
+  
+    function processCommand(event) {
+	var obj = JSON.parse(event.data);
+		document.getElementById('Time').innerHTML = obj.Time;
+	document.getElementById('RPM').innerHTML = obj.RPM;
+	document.getElementById('Gear').innerHTML = obj.Gear;
+   document.getElementById('TPS').innerHTML = obj.TPS;	
+	document.getElementById('sensorV').innerHTML = obj.sensorV;
+	document.getElementById('TriggerV').innerHTML = obj.TriggerV;
+	document.getElementById('DownV').innerHTML = obj.DownV;
+	document.getElementById('Killtime').innerHTML = obj.Killtime;
+	
+  document.getElementById('CAN_alert').innerHTML = obj.CAN_alert;
+ 
+	
+    	console.log(obj.CurrentValue);
+		
+	
+	}
+	   
+  window.onload = function(event) {
+    init();
+  }
+</script>
+</html>
